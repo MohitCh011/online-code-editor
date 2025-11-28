@@ -1,0 +1,899 @@
+/* ============================================
+   PREMIUM CODEPEN-STYLE CLASSIC THEME
+   ============================================ */
+
+[data-ui-theme="classic"] {
+  /* CodePen Premium Colors */
+  --cp-black: #1e1f26;
+  --cp-dark: #2c2d3a;
+  --cp-darker: #1a1b26;
+  --cp-border: #36383f;
+  --cp-accent: #ffdd40;
+  --cp-accent-glow: #ffd700;
+  --cp-blue: #5a9fd4;
+  --cp-green: #88ce02;
+  --cp-green-glow: #98de12;
+  --cp-red: #f06c50;
+  --cp-text: #adb5bd;
+  --cp-text-light: #e0e6ed;
+  
+  /* Sharp corners */
+  --border-radius-sm: 0px;
+  --border-radius-md: 0px;
+  --border-radius-lg: 0px;
+  
+  /* Subtle shadows for depth */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.4);
+  --shadow-inset: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Override Main Background */
+[data-ui-theme="classic"][data-theme="dark"] {
+  --bg-primary: #1e1f26;
+  --text-primary: #adb5bd;
+  --border-color: #36383f;
+}
+
+[data-ui-theme="classic"][data-theme="light"] {
+  --bg-primary: #ffffff;
+  --text-primary: #333333;
+  --border-color: #d1d5db;
+  --cp-black: #ffffff;
+  --cp-dark: #f3f4f6;
+  --cp-darker: #e5e7eb;
+  --cp-border: #d1d5db;
+  --cp-accent: #f59e0b;
+  --cp-blue: #3b82f6;
+  --cp-green: #10b981;
+  --cp-text: #4b5563;
+  --cp-text-light: #1f2937;
+}
+
+/* ============================================
+   PREMIUM CODEPEN HEADER
+   ============================================ */
+[data-ui-theme="classic"] .app-header {
+  background: var(--cp-black);
+  border-bottom: 2px solid var(--cp-border);
+  box-shadow: var(--shadow-sm);
+  padding: 0 20px;
+  position: relative;
+}
+
+[data-ui-theme="classic"] .app-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent 0%,
+    var(--cp-accent) 20%,
+    var(--cp-accent) 80%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+[data-ui-theme="classic"] .app-header:hover::after {
+  opacity: 1;
+}
+
+[data-ui-theme="classic"] .app-title {
+  background: none;
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: unset;
+  color: var(--cp-accent);
+  font-weight: 700;
+  font-size: 24px;
+  letter-spacing: -0.5px;
+  text-transform: none;
+  font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  transition: all 0.3s ease;
+  text-shadow: 0 2px 8px rgba(255, 221, 64, 0.3);
+}
+
+[data-ui-theme="classic"] .app-title:hover {
+  text-shadow: 0 4px 16px rgba(255, 221, 64, 0.5);
+  letter-spacing: 0.5px;
+}
+
+[data-ui-theme="classic"] .header-right .icon-btn {
+  background: transparent;
+  border: 1px solid var(--cp-border);
+  color: var(--cp-text-light);
+  width: 36px;
+  height: 36px;
+  transition: all 0.15s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+[data-ui-theme="classic"] .header-right .icon-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: var(--cp-accent);
+  border-radius: 0;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s ease;
+  opacity: 0.2;
+}
+
+[data-ui-theme="classic"] .header-right .icon-btn:hover::before {
+  width: 100%;
+  height: 100%;
+}
+
+[data-ui-theme="classic"] .header-right .icon-btn:hover {
+  border-color: var(--cp-accent);
+  color: var(--cp-black);
+  box-shadow: 0 0 15px rgba(255, 221, 64, 0.5);
+}
+
+/* ============================================
+   PREMIUM CODEPEN TOOLBAR
+   ============================================ */
+[data-ui-theme="classic"] .main-toolbar {
+  background: var(--cp-darker);
+  border-bottom: 1px solid var(--cp-border);
+  box-shadow: var(--shadow-sm);
+  padding: 0 16px;
+  position: relative;
+}
+
+[data-ui-theme="classic"] .btn {
+  border-radius: 3px;
+  box-shadow: var(--shadow-sm);
+  border: none;
+  font-weight: 600;
+  font-size: 13px;
+  padding: 8px 16px;
+  text-transform: none;
+  letter-spacing: 0;
+  transition: all 0.15s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Scan line effect on buttons */
+[data-ui-theme="classic"] .btn::after {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: top 0.5s ease;
+}
+
+[data-ui-theme="classic"] .btn:hover::after {
+  top: 100%;
+}
+
+[data-ui-theme="classic"] .btn-default {
+  background: var(--cp-dark);
+  color: var(--cp-text-light);
+  border: 1px solid var(--cp-border);
+  box-shadow: var(--shadow-inset);
+}
+
+[data-ui-theme="classic"] .btn-default:hover {
+  background: var(--cp-black);
+  border-color: var(--cp-blue);
+  color: var(--cp-blue);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(90, 159, 212, 0.3);
+}
+
+[data-ui-theme="classic"] .btn-default:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-inset);
+}
+
+[data-ui-theme="classic"] .btn-primary {
+  background: var(--cp-green);
+  color: var(--cp-black);
+  font-weight: 700;
+  box-shadow: 0 4px 0 #6a9e01, var(--shadow-sm);
+}
+
+[data-ui-theme="classic"] .btn-primary:hover {
+  background: var(--cp-green-glow);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #6a9e01, 0 6px 12px rgba(136, 206, 2, 0.5);
+}
+
+[data-ui-theme="classic"] .btn-primary:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #6a9e01, var(--shadow-sm);
+}
+
+/* ============================================
+   PREMIUM CODEPEN TABS
+   ============================================ */
+[data-ui-theme="classic"] .editor-tabs {
+  background: var(--cp-darker);
+  border-bottom: none;
+  padding: 0;
+  gap: 0;
+  height: 44px;
+}
+
+[data-ui-theme="classic"] .tab {
+  border-radius: 0;
+  border: none;
+  border-right: 1px solid var(--cp-border);
+  padding: 0 24px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--cp-black);
+  color: var(--cp-text);
+  transition: all 0.15s ease;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+}
+
+/* Pixel pattern background */
+[data-ui-theme="classic"] .tab::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(255, 221, 64, 0.02) 2px,
+    rgba(255, 221, 64, 0.02) 4px
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+[data-ui-theme="classic"] .tab:hover::before {
+  opacity: 1;
+}
+
+[data-ui-theme="classic"] .tab:hover {
+  background: var(--cp-dark);
+  color: var(--cp-text-light);
+}
+
+[data-ui-theme="classic"] .tab.active {
+  background: var(--cp-darker);
+  color: var(--cp-accent);
+  border-bottom: 3px solid var(--cp-accent);
+  box-shadow: 0 -2px 8px rgba(255, 221, 64, 0.3);
+}
+
+[data-ui-theme="classic"] .tab-icon {
+  font-size: 16px;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+[data-ui-theme="classic"] .tab:hover .tab-icon {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+[data-ui-theme="classic"] .tab.active .tab-icon {
+  opacity: 1;
+  animation: classicIconBlink 2s ease infinite;
+}
+
+@keyframes classicIconBlink {
+  0%, 90%, 100% { opacity: 1; }
+  95% { opacity: 0.5; }
+}
+
+/* ============================================
+   PREMIUM DIVIDER WITH RETRO EFFECT
+   ============================================ */
+[data-ui-theme="classic"] .divider {
+  width: 8px;
+  border-radius: 0;
+  background: var(--cp-border);
+  box-shadow: var(--shadow-inset);
+  position: relative;
+  cursor: ew-resize;
+  transition: all 0.15s ease;
+}
+
+[data-ui-theme="classic"] .divider::before {
+  content: '⋮⋮';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--cp-text);
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: -4px;
+  opacity: 0.5;
+  transition: all 0.15s ease;
+  text-shadow: 0 0 5px currentColor;
+}
+
+[data-ui-theme="classic"] .divider:hover {
+  background: var(--cp-dark);
+  box-shadow: 0 0 10px var(--cp-accent);
+}
+
+[data-ui-theme="classic"] .divider:hover::before {
+  color: var(--cp-accent);
+  opacity: 1;
+  text-shadow: 0 0 10px var(--cp-accent);
+  animation: classicDividerPulse 1s ease infinite;
+}
+
+@keyframes classicDividerPulse {
+  0%, 100% { letter-spacing: -4px; }
+  50% { letter-spacing: -2px; }
+}
+
+[data-ui-theme="classic"] .divider.dragging {
+  background: var(--cp-accent);
+  box-shadow: 0 0 20px var(--cp-accent);
+}
+
+/* ============================================
+   PREMIUM PREVIEW TOOLBAR
+   ============================================ */
+[data-ui-theme="classic"] .preview-toolbar {
+  background: var(--cp-darker);
+  border-bottom: 1px solid var(--cp-border);
+  box-shadow: var(--shadow-sm);
+  height: 44px;
+}
+
+[data-ui-theme="classic"] .preview-label {
+  color: var(--cp-text-light);
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  display: inline-block;
+}
+
+[data-ui-theme="classic"] .preview-label::after {
+  content: '▸';
+  margin-left: 8px;
+  color: var(--cp-accent);
+  animation: classicArrowBlink 1.5s ease infinite;
+}
+
+@keyframes classicArrowBlink {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0; }
+}
+
+/* ============================================
+   PREMIUM MODAL
+   ============================================ */
+[data-ui-theme="classic"] .min-modal {
+  background: var(--cp-black);
+  border-radius: 0;
+  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5), 0 0 1px 2px var(--cp-border);
+  border: 3px solid var(--cp-border);
+  animation: classicModalScanIn 0.4s ease;
+}
+
+@keyframes classicModalScanIn {
+  from {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+/* CRT scanline effect */
+[data-ui-theme="classic"] .min-modal::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    rgba(255, 255, 255, 0.02) 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+[data-ui-theme="classic"] .min-header {
+  background: var(--cp-darker);
+  border-bottom: 2px solid var(--cp-border);
+  padding: 20px 24px;
+  position: relative;
+}
+
+[data-ui-theme="classic"] .min-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--cp-accent);
+  transition: width 0.5s ease;
+}
+
+[data-ui-theme="classic"] .min-modal:hover .min-header::after {
+  width: 100%;
+}
+
+/* ============================================
+   RETRO ANIMATIONS
+   ============================================ */
+[data-ui-theme="classic"] * {
+  transition-timing-function: ease;
+}
+
+/* Typewriter effect for labels */
+[data-ui-theme="classic"] .min-group label {
+  position: relative;
+  overflow: hidden;
+}
+
+[data-ui-theme="classic"] .min-group label::after {
+  content: '█';
+  color: var(--cp-accent);
+  animation: classicCursorBlink 1s step-end infinite;
+  margin-left: 4px;
+}
+
+@keyframes classicCursorBlink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+/* ==================================================
+   RETRO TERMINAL POPUP — CLASSIC THEME
+   Matches the CodePen-style green terminal aesthetic
+   ================================================== */
+
+/* -------------------------
+   Overlay
+   ------------------------- */
+.shortcuts-overlay.classic {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  animation: classicFadeIn 0.2s ease-out;
+}
+
+@keyframes classicFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* -------------------------
+   Popup Container (CodePen style)
+   ------------------------- */
+.shortcuts-container.classic {
+  background: var(--cp-black);
+  border: 2px solid var(--cp-border);
+  width: 850px;
+  max-width: 90vw;
+  max-height: 80vh;
+  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.8);
+  position: relative;
+  animation: classicPopupSlide 0.3s ease-out;
+  display: flex;
+  flex-direction: column;
+}
+
+@keyframes classicPopupSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* -------------------------
+   Header (matches toolbar style)
+   ------------------------- */
+.shortcuts-header.classic {
+  background: var(--cp-darker);
+  border-bottom: 1px solid var(--cp-border);
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  flex-shrink: 0;
+  min-height: 60px;
+}
+
+.shortcuts-title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.shortcuts-main-icon {
+  font-size: 28px;
+  color: var(--cp-text-light);
+  opacity: 0.8;
+}
+
+.shortcuts-title {
+  font-family: 'Lato', -apple-system, sans-serif;
+  font-size: 18px;
+  color: var(--cp-accent);
+  margin: 0;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.shortcuts-subtitle {
+  font-family: 'Lato', sans-serif;
+  color: var(--cp-text);
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  margin: 0.2rem 0 0 0;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+/* Close button (X) - matches icon buttons */
+.shortcuts-close.classic {
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: 1px solid var(--cp-border);
+  color: var(--cp-text-light);
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shortcuts-close.classic:hover {
+  background: var(--cp-dark);
+  border-color: var(--cp-accent);
+  color: var(--cp-accent);
+}
+
+/* -------------------------
+   Body (scrollable)
+   ------------------------- */
+.shortcuts-body.classic {
+  padding: 1.5rem;
+  overflow-y: auto;
+  flex: 1;
+  background: var(--cp-black);
+  min-height: 0;
+}
+
+/* Scrollbar - matches classic style */
+.shortcuts-body.classic::-webkit-scrollbar {
+  width: 10px;
+}
+
+.shortcuts-body.classic::-webkit-scrollbar-track {
+  background: var(--cp-darker);
+  border-left: 1px solid var(--cp-border);
+}
+
+.shortcuts-body.classic::-webkit-scrollbar-thumb {
+  background: var(--cp-border);
+  border-left: 1px solid var(--cp-darker);
+}
+
+.shortcuts-body.classic::-webkit-scrollbar-thumb:hover {
+  background: var(--cp-accent);
+}
+
+/* -------------------------
+   Grid Layout (2 columns on desktop)
+   ------------------------- */
+.shortcuts-grid.classic {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+/* -------------------------
+   Section Boxes (CodePen panel style)
+   ------------------------- */
+.shortcuts-section.classic {
+  background: var(--cp-darker);
+  border: 1px solid var(--cp-border);
+  padding: 1rem;
+  transition: all 0.15s ease;
+}
+
+.shortcuts-section.classic:hover {
+  border-color: var(--cp-accent);
+  background: var(--cp-dark);
+}
+
+/* Category Header */
+.shortcuts-category.classic {
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
+  color: var(--cp-text-light);
+  margin: 0 0 1rem 0;
+  padding-bottom: 0.5rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-bottom: 1px solid var(--cp-border);
+}
+
+.shortcuts-category.classic .category-icon {
+  font-size: 18px;
+  opacity: 0.7;
+}
+
+/* Items list */
+.shortcuts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* -------------------------
+   Shortcut Items (clean rows)
+   ------------------------- */
+.shortcut-item.classic {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  background: var(--cp-black);
+  border: 1px solid transparent;
+  transition: all 0.15s ease;
+}
+
+.shortcut-item.classic:hover {
+  background: var(--cp-dark);
+  border-color: var(--cp-border);
+}
+
+.shortcut-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.shortcut-icon {
+  font-size: 16px;
+  flex-shrink: 0;
+  opacity: 0.8;
+}
+
+.shortcut-description {
+  font-family: 'Lato', sans-serif;
+  color: var(--cp-text);
+  font-size: 13px;
+  font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.shortcut-keys {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  flex-shrink: 0;
+}
+
+/* -------------------------
+   Key Badges (CodePen style)
+   ------------------------- */
+.key.classic {
+  background: var(--cp-darker);
+  border: 1px solid var(--cp-border);
+  padding: 3px 8px;
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 12px;
+  color: var(--cp-text-light);
+  min-width: 30px;
+  text-align: center;
+  transition: all 0.15s ease;
+  font-weight: 600;
+}
+
+.key.classic:hover {
+  background: var(--cp-dark);
+  border-color: var(--cp-accent);
+  color: var(--cp-accent);
+}
+
+.key-separator {
+  color: var(--cp-text);
+  font-family: 'Lato', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+}
+/* ============================================
+   CLASSIC SHORTCUTS BUTTON (Footer)
+   CodePen-style green button
+   ============================================ */
+
+[data-ui-theme="classic"] .shortcuts-btn {
+  background: var(--cp-green);
+  color: var(--cp-black);
+  border: none;
+  border-radius: 0;
+  padding: 8px 16px;
+  font-family: 'Lato', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 0 #6a9e01;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+[data-ui-theme="classic"] .shortcuts-btn:hover {
+  background: #98de12;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #6a9e01;
+}
+
+[data-ui-theme="classic"] .shortcuts-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #6a9e01;
+}
+
+[data-ui-theme="classic"] .shortcuts-icon {
+  font-size: 16px;
+}
+
+[data-ui-theme="classic"] .shortcuts-text {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+[data-ui-theme="classic"] .footer-kbd {
+  background: var(--cp-darker);
+  border: 1px solid var(--cp-border);
+  color: var(--cp-accent);
+  padding: 2px 6px;
+  border-radius: 0;
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  margin-left: 0.25rem;
+}
+
+/* -------------------------
+   Shortcuts Modal Footer (Updated)
+   ------------------------- */
+.shortcuts-footer.classic {
+  background: var(--cp-darker);
+  border-top: 1px solid var(--cp-border);
+  padding: 1rem 1.5rem;
+  flex-shrink: 0;
+}
+
+.shortcuts-tip {
+  font-family: 'Lato', sans-serif;
+  color: var(--cp-text);
+  font-size: 12px;
+  margin: 0;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.shortcuts-tip strong {
+  color: var(--cp-text-light);
+  font-weight: 700;
+}
+
+/* Tip icon */
+.shortcuts-tip::before {
+  content: '💡';
+  font-size: 16px;
+}
+
+/* Key badges in tip */
+.shortcuts-tip .key.classic {
+  margin: 0 0.2rem;
+  padding: 2px 6px;
+  font-size: 11px;
+}
+
+/* -------------------------
+   Responsive
+   ------------------------- */
+@media (max-width: 1024px) {
+  .shortcuts-grid.classic {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .shortcuts-container.classic {
+    width: 95vw;
+    max-height: 85vh;
+  }
+
+  .shortcuts-header.classic {
+    padding: 0.8rem 1rem;
+  }
+
+  .shortcuts-body.classic {
+    padding: 1rem;
+  }
+
+  .shortcuts-title {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .shortcuts-container.classic {
+    width: 98vw;
+  }
+
+  .shortcut-item.classic {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .shortcut-keys {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
+/* -------------------------
+   Accessibility
+   ------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .shortcuts-overlay.classic,
+  .shortcuts-container.classic {
+    animation: none !important;
+  }
+}
+
+.shortcuts-close.classic:focus,
+.key.classic:focus {
+  outline: 2px solid var(--cp-accent);
+  outline-offset: 2px;
+}

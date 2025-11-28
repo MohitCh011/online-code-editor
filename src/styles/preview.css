@@ -1,0 +1,194 @@
+/* ============================================
+   PREVIEW SECTION - COMPLETE REWRITE
+   Online Code Compiler
+   ============================================ */
+
+/* ============================================
+   PREVIEW CONTAINER
+   ============================================ */
+
+.preview-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ============================================
+   PREVIEW TOOLBAR
+   ============================================ */
+
+.preview-toolbar {
+  height: 50px;
+  min-height: 50px;
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.preview-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 14px;
+}
+
+.preview-icon {
+  font-size: 18px;
+}
+
+.preview-text {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.preview-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* ============================================
+   PREVIEW FRAME
+   ============================================ */
+
+.preview-frame {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: white;
+  display: block;
+  position: relative;
+  overflow: auto;
+  min-height: 0;
+}
+
+.preview-frame.refreshing {
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+/* ============================================
+   PREVIEW LOADING STATE
+   ============================================ */
+
+.preview-loading {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+}
+
+.preview-loading .loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--border-color);
+  border-top-color: var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.preview-loading p {
+  font-size: 14px;
+  opacity: 0.7;
+  margin: 0;
+}
+
+/* ============================================
+   MODERN THEME
+   ============================================ */
+
+[data-ui-theme="modern"] .preview-toolbar {
+  background: linear-gradient(180deg, #0d1020, #151932);
+  border-bottom: 2px solid var(--neon-cyan);
+  box-shadow: 0 2px 10px rgba(0, 243, 255, 0.3);
+}
+
+[data-ui-theme="modern"] .preview-label {
+  font-family: 'Orbitron', sans-serif;
+  color: var(--neon-cyan);
+  text-shadow: 0 0 10px var(--neon-cyan);
+  letter-spacing: 2px;
+}
+
+[data-ui-theme="modern"] .preview-icon {
+  filter: drop-shadow(0 0 5px var(--neon-cyan));
+}
+
+[data-ui-theme="modern"] .preview-frame {
+  border: 1px solid var(--neon-cyan);
+  box-shadow: inset 0 0 20px rgba(0, 243, 255, 0.05);
+}
+
+[data-ui-theme="modern"] .preview-loading .loading-spinner {
+  border-top-color: var(--neon-cyan);
+  box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+}
+
+/* ============================================
+   CLASSIC THEME
+   ============================================ */
+
+[data-ui-theme="classic"] .preview-toolbar {
+  background: var(--cp-darker);
+  border-bottom: 1px solid var(--cp-border);
+}
+
+[data-ui-theme="classic"] .preview-label {
+  font-family: 'Lato', sans-serif;
+  color: var(--cp-text-light);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+[data-ui-theme="classic"] .preview-frame {
+  border: none;
+}
+
+[data-ui-theme="classic"] .preview-loading .loading-spinner {
+  border-top-color: var(--cp-green);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+  .preview-text {
+    display: none;
+  }
+
+  .preview-toolbar {
+    padding: 0 0.75rem;
+  }
+
+  .preview-actions {
+    gap: 0.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .preview-toolbar {
+    height: 44px;
+    min-height: 44px;
+  }
+
+  .preview-icon {
+    font-size: 16px;
+  }
+}

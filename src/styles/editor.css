@@ -1,0 +1,488 @@
+.editor-section {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--bg-primary);
+  overflow: hidden;
+}
+
+.editor-tabs {
+  display: flex;
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--border-color);
+  padding: 0.5rem;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.tab {
+  padding: 0.5rem 1rem;
+  border: none;
+  background: transparent;
+  color: var(--text-primary);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.tab:hover {
+  background: rgba(102, 126, 234, 0.1);
+}
+
+.tab.active {
+  background: var(--primary-color);
+  color: white;
+}
+
+.tab-icon {
+  font-size: 18px;
+}
+
+.editor-panel {
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;
+}
+/* ============================================
+   EDITOR LOADING STATE
+   ============================================ */
+
+.editor-loading {
+  position: absolute;
+  inset: 0;
+  background: var(--bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+.loading-content {
+  text-align: center;
+  max-width: 400px;
+  padding: 2rem;
+}
+
+/* Spinning loader */
+.loading-spinner {
+  width: 60px;
+  height: 60px;
+  border: 4px solid var(--border-color);
+  border-top-color: var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1.5rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-text h3 {
+  color: var(--text-primary);
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.loading-text p {
+  color: var(--text-primary);
+  opacity: 0.7;
+  font-size: 14px;
+  margin-bottom: 1.5rem;
+}
+
+/* Progress bar */
+.loading-progress {
+  width: 100%;
+  height: 6px;
+  background: var(--border-color);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+}
+
+.loading-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  border-radius: 3px;
+  transition: width 0.3s ease;
+  animation: progressPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes progressPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.loading-percentage {
+  color: var(--primary-color);
+  font-weight: 700;
+  font-size: 14px;
+  font-family: 'Consolas', monospace;
+}
+
+/* Modern theme loading */
+[data-ui-theme="modern"] .loading-spinner {
+  border-top-color: var(--neon-cyan);
+  box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+}
+
+[data-ui-theme="modern"] .loading-progress-bar {
+  background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
+  box-shadow: 0 0 10px var(--neon-cyan);
+}
+
+[data-ui-theme="modern"] .loading-percentage {
+  color: var(--neon-cyan);
+  text-shadow: 0 0 10px var(--neon-cyan);
+}
+
+/* Classic theme loading */
+[data-ui-theme="classic"] .loading-spinner {
+  border-top-color: var(--cp-green);
+}
+
+[data-ui-theme="classic"] .loading-progress-bar {
+  background: var(--cp-green);
+}
+
+[data-ui-theme="classic"] .loading-percentage {
+  color: var(--cp-green);
+  font-family: 'VT323', monospace;
+  font-size: 18px;
+}
+
+[data-ui-theme="classic"] .loading-text {
+  font-family: 'VT323', monospace;
+}
+
+/* ============================================
+   ENHANCED EDITOR TABS WITH ANIMATIONS
+   ============================================ */
+
+.editor-tabs {
+  display: flex;
+  background: var(--bg-primary);
+  border-bottom: 2px solid var(--border-color);
+  position: relative;
+  height: 50px;
+  overflow: hidden;
+}
+
+/* Tab Button */
+.tab {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: var(--text-primary);
+  padding: 0 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 14px;
+  font-weight: 500;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0.6;
+  z-index: 1;
+}
+
+.tab:hover {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.tab.active {
+  opacity: 1;
+  font-weight: 600;
+}
+
+/* Tab Icon Animation */
+.tab-icon {
+  font-size: 18px;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  display: inline-block;
+}
+
+.tab:hover .tab-icon {
+  transform: scale(1.2) rotate(5deg);
+}
+
+.tab.active .tab-icon {
+  animation: iconBounce 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes iconBounce {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.3) rotate(10deg); }
+  100% { transform: scale(1); }
+}
+
+/* Tab Label Animation */
+.tab-label {
+  transition: all 0.3s ease;
+}
+
+.tab.active .tab-label {
+  color: var(--tab-color);
+}
+
+/* Active Tab Indicator */
+.tab-indicator {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  animation: indicatorSlide 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 10px currentColor;
+}
+
+@keyframes indicatorSlide {
+  from {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  to {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+/* Animated Slider Background */
+.tab-slider {
+  position: absolute;
+  bottom: -2px;
+  height: 3px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 0;
+  box-shadow: 0 0 15px currentColor;
+}
+
+/* Slide Animations */
+.tab.slide-right {
+  animation: slideOutRight 0.3s ease-out;
+}
+
+.tab.slide-left {
+  animation: slideOutLeft 0.3s ease-out;
+}
+
+@keyframes slideOutRight {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutLeft {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Ripple Effect on Click */
+.tab::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.tab:active::before {
+  width: 200px;
+  height: 200px;
+  transition: width 0s, height 0s;
+}
+
+/* Glow Effect on Active Tab */
+.tab.active::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(var(--tab-color-rgb), 0.1) 0%,
+    transparent 70%
+  );
+  opacity: 0;
+  animation: glowPulse 2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes glowPulse {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+/* Modern Theme Specific */
+[data-ui-theme="modern"] .tab {
+  font-family: 'Orbitron', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+[data-ui-theme="modern"] .tab.active {
+  background: linear-gradient(
+    180deg, 
+    rgba(0, 243, 255, 0.1), 
+    rgba(178, 75, 243, 0.1)
+  );
+  box-shadow: inset 0 0 20px rgba(0, 243, 255, 0.2);
+}
+
+[data-ui-theme="modern"] .tab-slider {
+  background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple)) !important;
+  height: 4px;
+  box-shadow: 0 0 20px var(--neon-cyan);
+  animation: modernSliderGlow 2s ease-in-out infinite;
+}
+
+@keyframes modernSliderGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px var(--neon-cyan);
+  }
+  50% {
+    box-shadow: 0 0 40px var(--neon-cyan), 0 0 60px var(--neon-purple);
+  }
+}
+
+[data-ui-theme="modern"] .tab-icon {
+  filter: drop-shadow(0 0 5px currentColor);
+}
+
+/* Classic Theme Specific */
+[data-ui-theme="classic"] .tab {
+  font-family: 'Lato', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-right: 1px solid var(--cp-border);
+}
+
+[data-ui-theme="classic"] .tab:last-child {
+  border-right: none;
+}
+
+[data-ui-theme="classic"] .tab.active {
+  background: var(--cp-darker);
+  border-bottom: 3px solid var(--tab-color);
+}
+
+[data-ui-theme="classic"] .tab:hover {
+  background: var(--cp-dark);
+}
+
+[data-ui-theme="classic"] .tab-slider {
+  display: none; /* Use border-bottom instead */
+}
+
+/* Loading State Animation */
+.editor-panel.loading {
+  animation: contentFadeIn 0.3s ease-out;
+}
+
+@keyframes contentFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .tab {
+    padding: 0 1rem;
+    font-size: 12px;
+  }
+
+  .tab-label {
+    display: none;
+  }
+
+  .tab-icon {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tab {
+    padding: 0 0.75rem;
+  }
+
+  .tab-icon {
+    font-size: 18px;
+  }
+}
+/* ============================================
+   EDITOR CONTENT TRANSITION
+   ============================================ */
+
+.code-editor {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.editor-wrapper {
+  height: 100%;
+  width: 100%;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.editor-wrapper.fade-transition {
+  animation: editorFadeIn 0.3s ease-out;
+}
+
+@keyframes editorFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.code-editor.transitioning .editor-wrapper {
+  opacity: 0.7;
+}
+
+/* Smooth transition for editor panel */
+.editor-panel {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}

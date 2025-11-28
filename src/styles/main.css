@@ -1,0 +1,600 @@
+/* ============================================
+   GLOBAL RESET & BASE STYLES
+   ============================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+/* ============================================
+   APP LAYOUT
+   ============================================ */
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+
+.app-header {
+  height: 60px;
+  min-height: 60px;
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+  flex-shrink: 0;
+  z-index: 100;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.app-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+}
+
+.logo-icon {
+  font-size: 32px;
+  animation: logoFloat 3s ease-in-out infinite;
+}
+
+@keyframes logoFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.logo-text h1 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.logo-text p {
+  font-size: 11px;
+  color: var(--text-primary);
+  opacity: 0.6;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Icon Buttons */
+.icon-btn {
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  color: var(--text-primary);
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.icon-btn:hover {
+  background: var(--bg-secondary);
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+}
+
+.icon-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ============================================
+   TOOLBAR
+   ============================================ */
+
+.main-toolbar {
+  height: 50px;
+  min-height: 50px;
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+  flex-shrink: 0;
+  z-index: 90;
+}
+
+.toolbar-left,
+.toolbar-right {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+/* Buttons */
+.btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 8px 16px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: inherit;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  background: var(--secondary-color);
+  border-color: var(--secondary-color);
+}
+
+.btn-default {
+  background: var(--bg-secondary);
+}
+
+.btn-icon {
+  font-size: 16px;
+}
+
+.btn-text {
+  font-weight: 600;
+}
+
+/* ============================================
+   SPLIT PANE - WORKING DIVIDER
+   ============================================ */
+
+.split-pane {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  min-height: 0;
+  background: var(--bg-primary);
+}
+
+.split-pane.dragging {
+  cursor: col-resize;
+  user-select: none;
+}
+
+.split-pane.dragging * {
+  cursor: col-resize !important;
+  user-select: none !important;
+}
+
+.editor-section,
+.preview-section {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  min-height: 0;
+  height: 100%;
+  flex-shrink: 0;
+}
+
+/* ============================================
+   DIVIDER - DRAGGABLE
+   ============================================ */
+
+.divider {
+  width: 8px;
+  min-width: 8px;
+  max-width: 8px;
+  background: var(--border-color);
+  cursor: col-resize;
+  flex-shrink: 0;
+  position: relative;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.divider:hover {
+  background: var(--primary-color);
+  width: 10px;
+  min-width: 10px;
+  max-width: 10px;
+}
+
+.divider.dragging {
+  background: var(--primary-color);
+  width: 10px;
+  min-width: 10px;
+  max-width: 10px;
+  box-shadow: 0 0 20px var(--primary-color);
+}
+
+.divider-handle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 8px 0;
+  background: var(--bg-primary);
+  border: 1px solid var(--primary-color);
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.divider:hover .divider-handle,
+.divider.dragging .divider-handle {
+  opacity: 1;
+}
+
+.divider-icon {
+  color: var(--primary-color);
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+
+.app-footer {
+  height: 40px;
+  min-height: 40px;
+  background: var(--bg-primary);
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.5rem;
+  flex-shrink: 0;
+  font-size: 12px;
+  z-index: 100;
+}
+
+.footer-left,
+.footer-center,
+.footer-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.footer-left p {
+  margin: 0;
+  color: var(--text-primary);
+  opacity: 0.7;
+}
+
+.footer-time {
+  color: var(--primary-color);
+  font-weight: 600;
+  font-family: 'Consolas', 'Monaco', monospace;
+}
+
+.shortcuts-btn {
+  padding: 6px 12px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  color: var(--text-primary);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.shortcuts-btn:hover {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+/* UI Theme Badge */
+.ui-theme-badge {
+  padding: 4px 10px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  color: var(--primary-color);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ui-theme-badge:hover {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+/* ============================================
+   MODERN THEME
+   ============================================ */
+
+[data-ui-theme="modern"] .app-header {
+  background: linear-gradient(135deg, #0d1020, #151932);
+  border-bottom: 2px solid var(--neon-cyan);
+  box-shadow: 0 4px 20px rgba(0, 243, 255, 0.2);
+}
+
+[data-ui-theme="modern"] .logo-text h1 {
+  font-family: 'Orbitron', sans-serif;
+  color: var(--neon-cyan);
+  text-shadow: 0 0 10px var(--neon-cyan);
+}
+
+[data-ui-theme="modern"] .icon-btn {
+  border-color: var(--neon-cyan);
+  background: rgba(0, 243, 255, 0.05);
+  color: var(--neon-cyan);
+  clip-path: polygon(8px 0%, calc(100% - 8px) 0%, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0% calc(100% - 8px), 0% 8px);
+}
+
+[data-ui-theme="modern"] .icon-btn:hover {
+  background: rgba(0, 243, 255, 0.2);
+  box-shadow: 0 0 20px var(--neon-cyan);
+}
+
+[data-ui-theme="modern"] .btn {
+  background: linear-gradient(135deg, rgba(0, 243, 255, 0.1), rgba(178, 75, 243, 0.1));
+  border-color: var(--neon-cyan);
+  color: var(--neon-cyan);
+  clip-path: polygon(6px 0%, calc(100% - 6px) 0%, 100% 6px, 100% calc(100% - 6px), calc(100% - 6px) 100%, 6px 100%, 0% calc(100% - 6px), 0% 6px);
+}
+
+[data-ui-theme="modern"] .btn-primary {
+  background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+  color: #000;
+  border-color: var(--neon-purple);
+  box-shadow: 0 0 20px rgba(0, 243, 255, 0.4);
+}
+
+[data-ui-theme="modern"] .divider {
+  background: linear-gradient(180deg, var(--neon-cyan), var(--neon-purple));
+  box-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
+}
+
+[data-ui-theme="modern"] .divider:hover,
+[data-ui-theme="modern"] .divider.dragging {
+  box-shadow: 0 0 30px var(--neon-cyan), 0 0 50px var(--neon-purple);
+}
+
+[data-ui-theme="modern"] .divider-icon {
+  color: var(--neon-cyan);
+  text-shadow: 0 0 10px var(--neon-cyan);
+}
+
+/* ============================================
+   CLASSIC THEME
+   ============================================ */
+
+[data-ui-theme="classic"] .app-header {
+  background: var(--cp-black);
+  border-bottom: 1px solid var(--cp-border);
+}
+
+[data-ui-theme="classic"] .logo-text h1 {
+  font-family: 'Lato', sans-serif;
+  color: var(--cp-accent);
+}
+
+[data-ui-theme="classic"] .icon-btn {
+  background: var(--cp-darker);
+  border-color: var(--cp-border);
+  color: var(--cp-text-light);
+  border-radius: 0;
+}
+
+[data-ui-theme="classic"] .icon-btn:hover {
+  background: var(--cp-dark);
+  border-color: var(--cp-accent);
+  color: var(--cp-accent);
+}
+
+[data-ui-theme="classic"] .btn {
+  background: var(--cp-darker);
+  border-color: var(--cp-border);
+  color: var(--cp-text-light);
+  border-radius: 0;
+}
+
+[data-ui-theme="classic"] .btn:hover {
+  background: var(--cp-dark);
+  border-color: var(--cp-accent);
+}
+
+[data-ui-theme="classic"] .btn-primary {
+  background: var(--cp-green);
+  color: var(--cp-black);
+  border: none;
+  box-shadow: 0 4px 0 #6a9e01;
+}
+
+[data-ui-theme="classic"] .btn-primary:hover {
+  background: #98de12;
+}
+
+[data-ui-theme="classic"] .btn-primary:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #6a9e01;
+}
+
+[data-ui-theme="classic"] .divider {
+  background: var(--cp-border);
+}
+
+[data-ui-theme="classic"] .divider:hover,
+[data-ui-theme="classic"] .divider.dragging {
+  background: var(--cp-accent);
+}
+
+[data-ui-theme="classic"] .divider-icon {
+  color: var(--cp-accent);
+  font-family: 'VT323', monospace;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+  .app-header {
+    padding: 0 1rem;
+  }
+
+  .logo-text h1 {
+    font-size: 16px;
+  }
+
+  .logo-text p {
+    display: none;
+  }
+
+  .btn-text {
+    display: none;
+  }
+
+  .btn {
+    padding: 8px;
+    min-width: 40px;
+  }
+
+  .split-pane {
+    flex-direction: column;
+  }
+
+  .editor-section,
+  .preview-section {
+    width: 100% !important;
+    height: 50% !important;
+  }
+
+  .divider {
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    height: 8px !important;
+    min-height: 8px !important;
+    max-height: 8px !important;
+    cursor: row-resize;
+  }
+
+  .divider:hover {
+    height: 10px !important;
+    min-height: 10px !important;
+    max-height: 10px !important;
+  }
+
+  .divider-handle {
+    width: 50px;
+    min-height: auto;
+    padding: 4px 8px;
+  }
+
+  .divider-icon {
+    transform: rotate(90deg);
+  }
+
+  .app-footer {
+    padding: 0 1rem;
+  }
+
+  .footer-left p {
+    display: none;
+  }
+}
+/* ============================================
+   DRAG OVERLAY - FIXES IFRAME BLOCKING
+   ============================================ */
+
+.drag-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 9999;
+  cursor: col-resize;
+  background: transparent;
+}
+
+.split-pane.dragging .preview-frame {
+  pointer-events: none;
+}
+
+.split-pane.dragging iframe {
+  pointer-events: none !important;
+}

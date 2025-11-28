@@ -1,0 +1,32 @@
+@media (max-width: 768px) {
+  .split-pane {
+    flex-direction: column;
+  }
+
+  .editor-section,
+  .preview-section {
+    width: 100% !important;
+    height: 50%;
+  }
+
+  .divider {
+    width: 100%;
+    height: 5px;
+    cursor: row-resize;
+  }
+
+  .main-toolbar {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 0.5rem;
+  }
+
+  .toolbar-left,
+  .toolbar-right {
+    flex-wrap: wrap;
+  }
+
+  .app-title {
+    font-size: 18px;
+  }
+}
