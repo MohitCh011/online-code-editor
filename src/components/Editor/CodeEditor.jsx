@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import Editor from '@monaco-editor/react';
 import { useEditor } from '../../context/EditorContext';
 import { useTheme } from '../../context/ThemeContext';
+import { configureEmmet } from '../../utils/emmetConfig';
 
 const CodeEditor = () => {
   const { code, updateCode, activeTab, fontSize } = useEditor();
@@ -40,9 +41,32 @@ const CodeEditor = () => {
     }
   }, [isLoading]);
 
+  // Listen for format event from toolbar
+  useEffect(() => {
+    const handleFormatCode = () => {
+      if (editorRef.current) {
+        editorRef.current.getAction('editor.action.formatDocument').run();
+      }
+    };
+
+    window.addEventListener('formatCode', handleFormatCode);
+    return () => window.removeEventListener('formatCode', handleFormatCode);
+  }, []);
+
   const handleEditorDidMount = (editor, monaco) => {
     editorRef.current = editor;
+    
+    // Configure Emmet snippets
+    configureEmmet(monaco);
+    
+    // Enable JavaScript/TypeScript suggestions
     monaco.languages.typescript.javascriptDefaults.setEagerModelSync(true);
+    monaco.languages.typescript.javascriptDefaults.setDiagnosticsOptions({
+      noSemanticValidation: false,
+      noSyntaxValidation: false
+    });
+
+    // Set loading complete
     setLoadingProgress(100);
     setTimeout(() => setIsLoading(false), 300);
   };
@@ -59,6 +83,20 @@ const CodeEditor = () => {
     };
     return languages[activeTab] || 'html';
   };
+
+  // Safety check AFTER all hooks
+  if (!code) {
+    return (
+      <div className="code-editor">
+        <div className="editor-loading">
+          <div className="loading-content">
+            <div className="loading-spinner"></div>
+            <p>Loading editor...</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={`code-editor ${isTransitioning ? 'transitioning' : ''}`}>
@@ -85,7 +123,7 @@ const CodeEditor = () => {
         <Editor
           height="100%"
           language={getLanguage()}
-          value={code[activeTab]}
+          value={code[activeTab] || ''}
           onChange={handleEditorChange}
           onMount={handleEditorDidMount}
           theme={theme}
@@ -98,10 +136,22 @@ const CodeEditor = () => {
             formatOnPaste: true,
             formatOnType: true,
             suggestOnTriggerCharacters: true,
-            quickSuggestions: true,
-            emmet: {
-              showExpandedAbbreviation: 'always',
+            quickSuggestions: {
+              other: true,
+              comments: true,
+              strings: true
             },
+            acceptSuggestionOnCommitCharacter: true,
+            acceptSuggestionOnEnter: 'on',
+            snippetSuggestions: 'top',
+            tabCompletion: 'on',
+            wordBasedSuggestions: true,
+            quickSuggestionsDelay: 10,
+            suggest: {
+              snippetsPreventQuickSuggestions: false,
+              showWords: true,
+              showSnippets: true
+            }
           }}
         />
       </div>
