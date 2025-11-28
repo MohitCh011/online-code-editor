@@ -10,8 +10,10 @@ import EditorTabs from './components/Editor/EditorTabs';
 import CodeEditor from './components/Editor/CodeEditor';
 import Preview from './components/Preview/Preview';
 import Footer from './components/Layout/Footer';
+import Console from './components/Console/Console';
 import { Toaster } from 'react-hot-toast';
 
+// Main App Content Component
 function AppContent() {
   const [isLoading, setIsLoading] = useState(true);
 
@@ -19,15 +21,21 @@ function AppContent() {
     setIsLoading(false);
   };
 
+  // Show loading page
   if (isLoading) {
     return <LoadingPage onLoadComplete={handleLoadComplete} />;
   }
 
+  // Show main application
   return (
     <div className="app">
+      {/* Header Section */}
       <Header />
+      
+      {/* Toolbar Section */}
       <Toolbar />
       
+      {/* Main Split Pane Layout */}
       <SplitPane
         left={
           <>
@@ -38,8 +46,13 @@ function AppContent() {
         right={<Preview />}
       />
       
+      {/* Footer Section */}
       <Footer />
       
+      {/* JavaScript Console Panel */}
+      <Console />
+      
+      {/* Toast Notifications */}
       <Toaster 
         position="bottom-right"
         toastOptions={{
@@ -49,12 +62,25 @@ function AppContent() {
             color: 'var(--text-primary)',
             border: '1px solid var(--border-color)',
           },
+          success: {
+            iconTheme: {
+              primary: '#10b981',
+              secondary: 'white',
+            },
+          },
+          error: {
+            iconTheme: {
+              primary: '#ef4444',
+              secondary: 'white',
+            },
+          },
         }}
       />
     </div>
   );
 }
 
+// Root App Component with Context Providers
 function App() {
   return (
     <ErrorBoundary>

@@ -9,6 +9,11 @@ export const useEditor = () => {
   }
   return context;
 };
+const runCode = () => {
+  // Clear console before running
+  window.dispatchEvent(new CustomEvent('clearConsole'));
+  console.log('Running code...');
+};
 
 const defaultCode = {
   html: `<!DOCTYPE html>
